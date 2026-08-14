@@ -11,8 +11,7 @@
 {
   "mcpServers": {
     "connectif": {
-      "command": "npx",
-      "args": ["-y", "@yoryoboy/connectif-mcp"],
+      "command": ["pnpm", "dlx", "@yoryoboy/connectif-mcp"],
       "env": {
         "CONNECTIF_API_KEY": "key-id:key-secret"
       }
@@ -21,7 +20,7 @@
 }
 ```
 
-3. Restart the MCP client. It will download and run `@yoryoboy/connectif-mcp@0.1.0` when needed.
+3. Restart the MCP client. `pnpm dlx` downloads and runs `@yoryoboy/connectif-mcp` when needed.
 
 Keep credentials in the client's environment configuration or another secret store. Never commit a real API key.
 
@@ -40,7 +39,7 @@ npm install @yoryoboy/connectif-mcp
 pnpm add @yoryoboy/connectif-mcp
 ```
 
-For MCP clients that support a command and arguments, the `npx` configuration above is the simplest setup. You can also run the installed executable with `connectif-mcp`.
+For a global installation alternative, run `npm install --global @yoryoboy/connectif-mcp` and configure the command as `connectif-mcp`. Direct `npx` shorthand may fail to resolve scoped package bins in some environments, so `pnpm dlx` is the recommended zero-install launcher.
 
 ## Configuration
 
