@@ -18,7 +18,10 @@ export function createServer(
       options.timeoutMs ?? Number(process.env.CONNECTIF_TIMEOUT_MS ?? 10000),
     fetch: options.fetch,
   });
-  const server = new McpServer({ name: "connectif-mcp", version: "0.1.0" });
+  const server = new McpServer({
+    name: "@yoryoboy/connectif-mcp",
+    version: "0.1.0",
+  });
   registerTools(server, client);
   return server;
 }

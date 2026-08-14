@@ -1,6 +1,6 @@
-# connectif-mcp
+# @yoryoboy/connectif-mcp
 
-`connectif-mcp` is a minimal [Model Context Protocol](https://modelcontextprotocol.io/) server that exposes the official Connectif HTTP API to MCP clients over **stdio**. It is a thin wrapper: requests use Connectif's official routes and parameter names, and upstream responses are returned without business transformations.
+`@yoryoboy/connectif-mcp` is a minimal [Model Context Protocol](https://modelcontextprotocol.io/) server that exposes the official Connectif HTTP API to MCP clients over **stdio**. It is a thin wrapper: requests use Connectif's official routes and parameter names, and upstream responses are returned without business transformations.
 
 ## Quick start
 
@@ -12,7 +12,7 @@
   "mcpServers": {
     "connectif": {
       "command": "npx",
-      "args": ["-y", "connectif-mcp"],
+      "args": ["-y", "@yoryoboy/connectif-mcp"],
       "env": {
         "CONNECTIF_API_KEY": "key-id:key-secret"
       }
@@ -21,7 +21,7 @@
 }
 ```
 
-3. Restart the MCP client. It will download and run `connectif-mcp@0.1.0` when needed.
+3. Restart the MCP client. It will download and run `@yoryoboy/connectif-mcp@0.1.0` when needed.
 
 Keep credentials in the client's environment configuration or another secret store. Never commit a real API key.
 
@@ -36,8 +36,8 @@ Keep credentials in the client's environment configuration or another secret sto
 Install the package directly when you want it in a project:
 
 ```bash
-npm install connectif-mcp
-pnpm add connectif-mcp
+npm install @yoryoboy/connectif-mcp
+pnpm add @yoryoboy/connectif-mcp
 ```
 
 For MCP clients that support a command and arguments, the `npx` configuration above is the simplest setup. You can also run the installed executable with `connectif-mcp`.

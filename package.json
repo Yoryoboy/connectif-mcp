@@ -1,5 +1,5 @@
 {
-  "name": "connectif-mcp",
+  "name": "@yoryoboy/connectif-mcp",
   "version": "0.1.0",
   "description": "A minimal Model Context Protocol server for the Connectif HTTP API",
   "type": "module",
