@@ -2,51 +2,10 @@
 
 `connectif-mcp` is a minimal [Model Context Protocol](https://modelcontextprotocol.io/) server that exposes the official Connectif HTTP API to MCP clients over **stdio**. It is a thin wrapper: requests use Connectif's official routes and parameter names, and upstream responses are returned without business transformations.
 
-The project is public-repository ready, but npm publication is intentionally deferred. The package remains `private: true` to prevent accidental publication.
+## Quick start
 
-## Requirements
-
-- Node.js 20 or newer
-- A Connectif API key with the scopes required by the operations you use
-- An MCP client that supports stdio servers
-
-## Local setup
-
-```bash
-npm install
-npm run build
-CONNECTIF_API_KEY='key-id:key-secret' npm start
-```
-
-The server reads these environment variables:
-
-| Variable               | Required | Default                       | Description                                               |
-| ---------------------- | -------- | ----------------------------- | --------------------------------------------------------- |
-| `CONNECTIF_API_KEY`    | Yes      | None                          | Sent as `Authorization: apiKey {value}`.                  |
-| `CONNECTIF_BASE_URL`   | No       | `https://api.connectif.cloud` | API origin; useful for mocked or compatible environments. |
-| `CONNECTIF_TIMEOUT_MS` | No       | `10000`                       | Request abort timeout in milliseconds.                    |
-
-### MCP client configuration
-
-The standard `mcpServers` shape can launch the locally built server. Replace the placeholder with the absolute path to this checkout:
-
-```json
-{
-  "mcpServers": {
-    "connectif": {
-      "command": "node",
-      "args": ["/absolute/path/to/connectif-mcp/dist/main.js"],
-      "env": {
-        "CONNECTIF_API_KEY": "key-id:key-secret"
-      }
-    }
-  }
-}
-```
-
-Keep credentials in the client's environment configuration or another secret store. Never commit a real API key.
-
-The following is a **future example only**. It is unavailable until this package is published to npm and must not be treated as a currently working configuration:
+1. Create a Connectif API key with the scopes required by the operations you use.
+2. Add this server to your MCP client's standard `mcpServers` configuration:
 
 ```json
 {
@@ -61,6 +20,43 @@ The following is a **future example only**. It is unavailable until this package
   }
 }
 ```
+
+3. Restart the MCP client. It will download and run `connectif-mcp@0.1.0` when needed.
+
+Keep credentials in the client's environment configuration or another secret store. Never commit a real API key.
+
+## Requirements
+
+- Node.js 20 or newer
+- A Connectif API key with the scopes required by the operations you use
+- An MCP client that supports stdio servers
+
+## Installation
+
+Install the package directly when you want it in a project:
+
+```bash
+npm install connectif-mcp
+pnpm add connectif-mcp
+```
+
+For MCP clients that support a command and arguments, the `npx` configuration above is the simplest setup. You can also run the installed executable with `connectif-mcp`.
+
+## Configuration
+
+```bash
+npm install
+npm run build
+CONNECTIF_API_KEY='key-id:key-secret' npm start
+```
+
+The server reads these environment variables:
+
+| Variable               | Required | Default                       | Description                                               |
+| ---------------------- | -------- | ----------------------------- | --------------------------------------------------------- |
+| `CONNECTIF_API_KEY`    | Yes      | None                          | Sent as `Authorization: apiKey {value}`.                  |
+| `CONNECTIF_BASE_URL`   | No       | `https://api.connectif.cloud` | API origin; useful for mocked or compatible environments. |
+| `CONNECTIF_TIMEOUT_MS` | No       | `10000`                       | Request abort timeout in milliseconds.                    |
 
 ## Tools and actions
 
@@ -107,14 +103,10 @@ npm run format:check
 npm run typecheck
 npm test
 npm run build
-npm pack --dry-run
+pnpm pack --dry-run
 ```
 
 Tests use mocked HTTP and do not require credentials or network access.
-
-## Status
-
-Usable locally as a thin Connectif MCP wrapper. The repository and npm metadata are prepared for future publication, but no Git repository has been initialized, no GitHub resources have been created, and npm publication is not available yet.
 
 ## License
 
